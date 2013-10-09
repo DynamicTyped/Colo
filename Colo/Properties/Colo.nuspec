@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>DynamicTyped</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/DynamicTyped/Colo</projectUrl>
+    <iconUrl>http://www.capellacore.com/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>First release as public source</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>caching</tags>
+  </metadata>
+</package>

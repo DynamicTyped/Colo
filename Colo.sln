@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colo", "Colo\Colo.csproj", "{751E89A3-2B22-41D6-A23F-2DBE2290D565}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BAC80820-F7CB-431B-B6FA-AA5C13479344}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "nuget", ".nuget\nuget.exe", "{8BC21163-F5FA-44D3-8336-1C43E6487302}"
+	ProjectSection(DebuggerProjectSystem) = preProject
+		PortSupplier = 00000000-0000-0000-0000-000000000000
+		Executable = C:\Projects\GitHub\Colo\.nuget\nuget.exe
+		RemoteMachine = M5CB23104MW
+		StartingDirectory = C:\Projects\GitHub\Colo\.nuget
+		Environment = Default
+		LaunchingEngine = 00000000-0000-0000-0000-000000000000
+		LaunchSQLEngine = No
+		AttachLaunchAction = No
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A8B702EF-D2BD-4749-B78F-926B84DB253E}"
+	ProjectSection(SolutionItems) = preProject
+		Colo.ruleset = Colo.ruleset
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{372841EE-A9DC-4F9A-B3C0-37D2983632B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colo.Test", "Colo.Test\Colo.Test.csproj", "{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{751E89A3-2B22-41D6-A23F-2DBE2290D565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{751E89A3-2B22-41D6-A23F-2DBE2290D565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{751E89A3-2B22-41D6-A23F-2DBE2290D565}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{751E89A3-2B22-41D6-A23F-2DBE2290D565}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{751E89A3-2B22-41D6-A23F-2DBE2290D565}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{751E89A3-2B22-41D6-A23F-2DBE2290D565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{751E89A3-2B22-41D6-A23F-2DBE2290D565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{751E89A3-2B22-41D6-A23F-2DBE2290D565}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{751E89A3-2B22-41D6-A23F-2DBE2290D565}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{751E89A3-2B22-41D6-A23F-2DBE2290D565}.Release|x86.ActiveCfg = Release|Any CPU
+		{8BC21163-F5FA-44D3-8336-1C43E6487302}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{8BC21163-F5FA-44D3-8336-1C43E6487302}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{8BC21163-F5FA-44D3-8336-1C43E6487302}.Debug|x86.ActiveCfg = Debug|x86
+		{8BC21163-F5FA-44D3-8336-1C43E6487302}.Release|Any CPU.ActiveCfg = Debug|x86
+		{8BC21163-F5FA-44D3-8336-1C43E6487302}.Release|Mixed Platforms.ActiveCfg = Debug|x86
+		{8BC21163-F5FA-44D3-8336-1C43E6487302}.Release|x86.ActiveCfg = Debug|x86
+		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8BC21163-F5FA-44D3-8336-1C43E6487302} = {BAC80820-F7CB-431B-B6FA-AA5C13479344}
+		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D} = {372841EE-A9DC-4F9A-B3C0-37D2983632B0}
+	EndGlobalSection
+EndGlobal
