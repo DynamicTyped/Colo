@@ -1,6 +1,6 @@
 <configuration>
   <configSections>
-    <section name ="Caching" type="Capella.Caching.Configuration.CachingSection, Capella.Caching"/>
+    <section name ="Caching" type="Colo.Configuration.CachingSection, Colo"/>
   </configSections>
   <Caching path="/" isPathVirtual="true" cacheLife="30" useCache ="true"></Caching>
 </configuration>
