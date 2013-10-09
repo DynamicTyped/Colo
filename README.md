@@ -59,4 +59,4 @@ Notice the class needs the [ProtoContract] attribute while the properties of the
 Usage
 -----
 
-For examples on using the library, refernce the test classes.
+For examples on using the library, reference the tests in the test project.
