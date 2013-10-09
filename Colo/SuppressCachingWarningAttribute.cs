@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Capella.Caching
+namespace Colo
 {
     /// <summary>
     /// Prevents warnings for objects without proto contract

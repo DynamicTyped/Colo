@@ -1,5 +1,4 @@
 ﻿using System;
-using Capella.Caching;
 using Colo.Configuration;
 using ProtoBuf;
 using System.IO;

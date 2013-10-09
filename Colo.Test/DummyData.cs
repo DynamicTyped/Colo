@@ -1,5 +1,4 @@
 ﻿using System;
-using Capella.Caching;
 using ProtoBuf;
 
 namespace Colo.Test
