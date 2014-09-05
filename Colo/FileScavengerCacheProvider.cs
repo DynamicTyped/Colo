@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Colo.Configuration;
+using System;
+using System.IO;
 using System.Runtime.Caching;
 using System.Threading;
-using System.IO;
 using System.Web;
-using Colo.Configuration;
 
 namespace Colo
 {
@@ -38,7 +38,7 @@ namespace Colo
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="key"></param>
-		/// <returns>Default implementation returns null as nothing is in the cache for this object</returns>        
+		/// <returns>Default implementation returns null as nothing is in the cache for this object</returns>
 		protected virtual T InternalGet<T>(string key) where T : class
 		{
 			return null;

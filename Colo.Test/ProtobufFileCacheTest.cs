@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Colo.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Colo.Configuration;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Colo.Test
 {
@@ -99,6 +99,41 @@ namespace Colo.Test
 			Assert.AreEqual(thisName, memoryData.Name);
 
 		}
+
+        [TestMethod]
+        public void DisableCacheTest()
+        {
+            var pfcp = new ProtobufFileCacheProvider();
+            var file = UnitTestHelper.GenrateFileName();
+            const string thisAge = "18";
+            const string thisName = "Sally";
+            Func<DummyData2> execute = () =>
+                new DummyData2() { Age = thisAge, Name = thisName };
+
+
+            pfcp.GetOrExecuteAndAdd(file, execute);
+            Assert.IsFalse(File.Exists(Path.Combine(CachingSection.GetSection.Path, file)));
+
+
+        }
+
+        [TestMethod]
+	    public void DisableIEnumerableTest()
+	    {
+            var pfcp = new ProtobufFileCacheProvider();
+            var file = UnitTestHelper.GenrateFileName();
+            const string thisAge = "18";
+            const string thisName = "Sally";
+            Func<List<DummyData2>> execute = () =>
+                new List<DummyData2>()
+                {
+                    new DummyData2(){Age = thisAge, Name = thisName}
+                };
+
+
+            pfcp.GetOrExecuteAndAdd(file, execute, typeof(DummyData2));
+            Assert.IsFalse(File.Exists(Path.Combine(CachingSection.GetSection.Path, file)));
+	    }
 
 		[TestMethod]
 		public void AddorExecuteAndAddWithListTest()

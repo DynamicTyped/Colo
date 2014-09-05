@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Colo.Configuration;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Runtime.Caching;
 using System.Security.Cryptography;
-using Colo.Configuration;
+using System.Text;
 
 namespace Colo
 {
@@ -89,15 +90,31 @@ namespace Colo
             // if type passed in try an item for that
             if (null != type)
                 cacheTimeByType = (CacheDefaultValueElement)cachingSection.CacheDefaults[type.ToString()];
-            
+
             // if not found or not passed in try T
             if (null == cacheTimeByType)
                 cacheTimeByType = (CacheDefaultValueElement)cachingSection.CacheDefaults[typeof(T).ToString()];
+
+            if (null == cacheTimeByType)
+            {
+                cacheTimeByType =
+                    (CacheDefaultValueElement)cachingSection.CacheDefaults[GetEnumerableType(typeof(T)).ToString()];
+            }
 
             // use the configuration time or the default
             return cacheTimeByType ??
                    new CacheDefaultValueElement() {Enabled = cachingSection.UseCache, CacheLife = cachingSection.CacheLife};
 
+        }
+
+        static Type GetEnumerableType(Type type)
+        {
+            return (
+                    from intType in type.GetInterfaces()
+                    where intType.IsGenericType && intType.GetGenericTypeDefinition() == typeof (IEnumerable<>)
+                    select intType.GetGenericArguments()[0]
+                    )
+                .FirstOrDefault();
         }
 
         /// <summary>
