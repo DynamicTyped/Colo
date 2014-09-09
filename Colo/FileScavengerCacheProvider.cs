@@ -18,9 +18,12 @@ namespace Colo
 			get { return MemoryCache.Default; }
 		}
 
+		/// <summary>
+		/// Location of the file
+		/// </summary>
 		public static string Path
 		{
-            get { return CachingSection.GetSection.IsPathVirtual ? HttpContext.Current.Server.MapPath(CachingSection.GetSection.Path) : CachingSection.GetSection.Path; }
+			get { return CachingSection.GetSection.IsPathVirtual ? HttpContext.Current.Server.MapPath(CachingSection.GetSection.Path) : CachingSection.GetSection.Path; }
 		}
 
 		/// <summary>
@@ -65,25 +68,25 @@ namespace Colo
 		{
 			try
 			{
-			    if (CachingSection.GetSection.UseCache)
+				if (CachingSection.GetSection.UseCache)
 				{
 					var locker = Cache.Get(key) as Lazy<ReaderWriterLockSlim>;
 
-				    if (locker != null)
-				    {
-				        try
-				        {
-				            locker.Value.EnterReadLock();
-				            return InternalGet<T>(key);
-				        }
-				        finally
-				        {
-				            locker.Value.ExitReadLock();
-				        }
-				    }
-				    return null;
+					if (locker != null)
+					{
+						try
+						{
+							locker.Value.EnterReadLock();
+							return InternalGet<T>(key);
+						}
+						finally
+						{
+							locker.Value.ExitReadLock();
+						}
+					}
+					return null;
 				}
-			    return null;
+				return null;
 			}
 			catch
 			{
@@ -91,6 +94,10 @@ namespace Colo
 			}
 		}
 
+		/// <summary>
+		/// Create the cache
+		/// </summary>
+		/// <param name="key">item name</param>
 		public void Set(string key)
 		{
 			Set(key, string.Empty);
@@ -102,12 +109,12 @@ namespace Colo
 		/// <typeparam name="T">Type of object</typeparam>
 		/// <param name="key">full file name</param>
 		/// <param name="data">data to save</param>
-		/// <param name="type">If T is a some form of enumeration, then type must be passed in.  It is the type of the enumeration. For example if T = List of int, type must be typeof(int).  If T is double or some other class type can be null.  Ignored for filescavenger process</param>
+		/// <param name="type">If T is a some form of enumeration, then type must be passed in.  It is the type of the enumeration. For example if T = List of int, type must be typeof(int).  If T is double or some other class type can be null.  Ignored for file scavenger process</param>
 		public override void Set<T>(string key, T data, Type type = null)
 		{
 			try
 			{
-			    var cacheElement = GetCacheDefaults(data, type);
+				var cacheElement = GetCacheDefaults(data, type);
 				if (CachingSection.GetSection.UseCache && cacheElement.Enabled)
 				{
 					// lock the locker dictionary, add this lock, free the dictionary, lock the file, do work, unlock file
@@ -116,9 +123,9 @@ namespace Colo
 					locker = Cache.AddOrGetExisting(
 						key,
 						locker,
-						new CacheItemPolicy()
+						new CacheItemPolicy
 						{
-                            AbsoluteExpiration = DateTime.Now.AddMinutes(cacheElement.CacheLife),
+							AbsoluteExpiration = DateTime.Now.AddMinutes(cacheElement.CacheLife),
 							RemovedCallback = RemoveItem
 						}) as Lazy<ReaderWriterLockSlim>
 						?? locker;
@@ -137,7 +144,7 @@ namespace Colo
 			}
 			catch (Exception ex)
 			{
-                System.Diagnostics.Debug.Fail(ex.Message);
+				System.Diagnostics.Debug.Fail(ex.Message);
 			}
 		}
 
@@ -161,9 +168,9 @@ namespace Colo
 						File.Delete(key);
 					}
 					catch (Exception ex) 
-                    {
-                        System.Diagnostics.Debug.Fail(ex.Message);
-                    }
+					{
+						System.Diagnostics.Debug.Fail(ex.Message);
+					}
 					finally
 					{
 						locker.Value.ExitWriteLock();

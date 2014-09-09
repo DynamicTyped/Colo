@@ -1,12 +1,12 @@
-﻿using System;
-using Colo.Configuration;
+﻿using Colo.Configuration;
 using ProtoBuf;
+using System;
 using System.IO;
 
 namespace Colo
 {
     /// <summary>
-    /// A file based caching system.  Uses a memory cache as the backend management of the keys.
+    /// A file based caching system.  Uses a memory cache as the back-end management of the keys.
     /// Types must be using protobuf and decorate their class as such
     /// http://code.google.com/p/protobuf-net/
     /// </summary>
