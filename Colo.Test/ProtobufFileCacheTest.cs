@@ -1,4 +1,7 @@
-﻿using Colo.Configuration;
+﻿using System.Linq.Expressions;
+using System.Runtime.InteropServices;
+using Colo.Configuration;
+using Colo.Test.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -224,5 +227,34 @@ namespace Colo.Test
 			var result = provider.Get<DummyData>(key);
 			Assert.AreEqual(data, result);
 		}
+
+	    [TestMethod]
+	    public void TestCacheDefaultValueWalking()
+	    {
+            // Configuration section
+            var cachingSection = CachingSection.GetSection;
+
+            // Test with type T
+	        var test = new CacheDefaultTest1C();
+	        var default1 = BaseCacheProvider.GetCacheDefaults(test);
+            var assert1 = (CacheDefaultValueElement)cachingSection.CacheDefaults["Colo.Test.Helpers.CacheDefaultTest1B"];
+            Assert.AreSame(default1, assert1);
+
+            // Test with type parameter (should revert to type T since 2B isn't enabled)
+            var default2 = BaseCacheProvider.GetCacheDefaults(test, typeof(CacheDefaultTest2B));
+            var assert2 = (CacheDefaultValueElement)cachingSection.CacheDefaults["Colo.Test.Helpers.CacheDefaultTest2A"];
+            Assert.AreSame(default2, assert2);
+            Assert.IsFalse(default2.Enabled);
+
+            var default3 = BaseCacheProvider.GetCacheDefaults(test, typeof(CacheDefaultTest2C));
+            var assert3 = (CacheDefaultValueElement)cachingSection.CacheDefaults["Colo.Test.Helpers.CacheDefaultTest2C"];
+            Assert.AreSame(default3, assert3);
+
+            // Test with an enumerable type
+	        var test4 = Enumerable.Empty<CacheDefaultTest1C>();
+            var default4 = BaseCacheProvider.GetCacheDefaults(test4);
+            var assert4 = (CacheDefaultValueElement)cachingSection.CacheDefaults["Colo.Test.Helpers.CacheDefaultTest1B"];
+            Assert.AreSame(default4, assert4);
+        }
 	}
 }

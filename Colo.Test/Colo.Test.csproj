@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DummyData.cs" />
+    <Compile Include="Helpers\CacheDefaultTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileScavengerTest.cs" />
     <Compile Include="ProtobufFileCacheTest.cs" />

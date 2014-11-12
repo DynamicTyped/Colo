@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
+using System.Linq;
 
 namespace Colo.Configuration
 {
@@ -15,6 +17,11 @@ namespace Colo.Configuration
         protected override object GetElementKey(ConfigurationElement element)
         {
             return ((CacheDefaultValueElement)element).Type;
+        }
+
+        public bool ContainsKey(string name)
+        {
+            return BaseGetAllKeys().Contains(name);
         }
 
         public new ConfigurationElement this[string name]

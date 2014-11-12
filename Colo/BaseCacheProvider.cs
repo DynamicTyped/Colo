@@ -90,19 +90,17 @@ namespace Colo
 			var cachingSection = CachingSection.GetSection;
 			CacheDefaultValueElement cacheTimeByType = null;
 
-			// if type passed in try an item for that
-			if (null != type)
-				cacheTimeByType = (CacheDefaultValueElement)cachingSection.CacheDefaults[type.ToString()];
+            // First, iterate through the dependency tree for the "type" parameter.
+            // Second, iterate through the dependency tree for type "T".
+            // Next, if it's an enumerable type, iterate through it.
+            var dependencyTree = WalkDependencyTree(type)
+                .Union(WalkDependencyTree(typeof(T)))
+                .Union(WalkDependencyTree(GetEnumerableType(typeof(T))));
 
-			// if not found or not passed in try T
-			if (null == cacheTimeByType)
-				cacheTimeByType = (CacheDefaultValueElement)cachingSection.CacheDefaults[typeof(T).ToString()];
+		    var cacheName = dependencyTree.FirstOrDefault(cachingSection.CacheDefaults.ContainsKey);
 
-			if (null == cacheTimeByType)
-			{
-				cacheTimeByType =
-					(CacheDefaultValueElement)cachingSection.CacheDefaults[GetEnumerableType(typeof(T)).ToString()];
-			}
+            cacheTimeByType = cacheName == null ? null
+                : (CacheDefaultValueElement) cachingSection.CacheDefaults[cacheName];
 
 			// use the configuration time or the default
 			return cacheTimeByType ??
@@ -110,10 +108,25 @@ namespace Colo
 
 		}
 
+	    private static IEnumerable<string> WalkDependencyTree(Type type)
+	    {
+	        if (type == null) return Enumerable.Empty<string>();
+
+            var currentType = type;
+	        var typeList = new List<string>();
+	        while (currentType != null)
+	        {
+                typeList.Add(currentType.FullName);
+	            currentType = currentType.BaseType;
+	        }
+
+	        return typeList;
+	    }
+
 		static Type GetEnumerableType(Type type)
 		{
 			return (
-					from intType in type.GetInterfaces()
+					from intType in type.GetInterfaces().Union(new [] { type })
 					where intType.IsGenericType && intType.GetGenericTypeDefinition() == typeof (IEnumerable<>)
 					select intType.GetGenericArguments()[0]
 					)
