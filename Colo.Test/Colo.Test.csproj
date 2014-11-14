@@ -68,7 +68,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Colo\Colo.csproj">
       <Project>{751E89A3-2B22-41D6-A23F-2DBE2290D565}</Project>
-      <Name>Capella.Caching</Name>
+      <Name>Colo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

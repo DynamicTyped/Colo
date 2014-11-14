@@ -1,0 +1,48 @@
+<!--
+***********************************************************************************************
+Presentation.tasks
+
+WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and have
+          created a backup copy.  Incorrect changes to this file will make it
+          impossible to load or build your projects from the command-line or the IDE.
+
+This file defines tasks that are used by the Capella Presentation build process.
+***********************************************************************************************
+-->
+
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Copied from NuGet's Build.tasks -->
+  <UsingTask TaskName="RegexTransform" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <Items ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Text.RegularExpressions" />
+      <Using Namespace="Microsoft.Build.Framework" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            foreach(ITaskItem item in Items) {
+              string fileName = item.GetMetadata("FullPath");
+              string find = item.GetMetadata("Find");
+              string replaceWith = item.GetMetadata("ReplaceWith");
+              
+              if(!File.Exists(fileName)) {
+                Log.LogError(null, null, null, null, 0, 0, 0, 0, String.Format("Could not find version file: {0}", fileName), new object[0]);
+              }
+              
+              // Clear the read-only attribute, if present (TFS will have the file marked as read-only if it's not checked-out)
+              FileAttributes attributes = File.GetAttributes(fileName);
+              
+              if (attributes.HasFlag(FileAttributes.ReadOnly)) {
+                File.SetAttributes(fileName, attributes & ~FileAttributes.ReadOnly);
+              }
+              
+              string content = File.ReadAllText(fileName);
+              File.WriteAllText(fileName, Regex.Replace(content, find, replaceWith));
+            }
+          ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+</Project>

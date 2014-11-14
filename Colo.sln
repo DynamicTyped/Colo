@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colo", "Colo\Colo.csproj", "{751E89A3-2B22-41D6-A23F-2DBE2290D565}"
 EndProject
@@ -32,6 +32,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{372841EE-A9DC-4F9A-B3C0-37D2983632B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colo.Test", "Colo.Test\Colo.Test.csproj", "{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{73C1C6B1-C805-4E05-BDF3-FA20DAB78C1B}"
+	ProjectSection(SolutionItems) = preProject
+		Build\Colo.settings.targets = Build\Colo.settings.targets
+		Build\Colo.tasks = Build\Colo.tasks
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
