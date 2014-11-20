@@ -11,7 +11,7 @@
     <RootNamespace>Colo</RootNamespace>
     <AssemblyName>Colo</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>  
+    <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -60,6 +60,7 @@
     <Compile Include="ICacheProvider.cs" />
     <Compile Include="MemoryCacheProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProtobufMemoryCacheProvider.cs" />
     <Compile Include="ProtobufFileCacheProvider.cs" />
     <Compile Include="SuppressCachingWarningAttribute.cs" />
   </ItemGroup>
