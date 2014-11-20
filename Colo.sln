@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{73C1C6B1
 		Build\Colo.tasks = Build\Colo.tasks
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colo.Redis", "Colo.Redis\Colo.Redis.csproj", "{3F84E837-B4D6-4FD1-A160-A2C5A38525D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,16 @@ Global
 		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F5D6A1ED-7915-4DF0-BBD8-3AB3E489551D}.Release|x86.ActiveCfg = Release|Any CPU
+		{3F84E837-B4D6-4FD1-A160-A2C5A38525D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F84E837-B4D6-4FD1-A160-A2C5A38525D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F84E837-B4D6-4FD1-A160-A2C5A38525D4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3F84E837-B4D6-4FD1-A160-A2C5A38525D4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3F84E837-B4D6-4FD1-A160-A2C5A38525D4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3F84E837-B4D6-4FD1-A160-A2C5A38525D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F84E837-B4D6-4FD1-A160-A2C5A38525D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F84E837-B4D6-4FD1-A160-A2C5A38525D4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3F84E837-B4D6-4FD1-A160-A2C5A38525D4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3F84E837-B4D6-4FD1-A160-A2C5A38525D4}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

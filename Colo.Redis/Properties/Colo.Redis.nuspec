@@ -1,0 +1,24 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>DynamicTyped</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/DynamicTyped/Colo</projectUrl>
+    <iconUrl>http://www.capellacore.com/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>First release as public source</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>caching,redis</tags>
+    <dependencies>
+      <group>
+        <dependency id="Colo" version="2.1423.11120.0" />
+        <dependency id="protobuf-net" version="2.0.0.668" />
+        <dependency id="StackExchange.Redis" version="1.0.371" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
