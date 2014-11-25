@@ -105,20 +105,21 @@ namespace Colo.Test
 
 		}
 
-        [TestMethod]
-        public void DisableCacheTest()
-        {
-            var pfcp = new ProtobufMemoryCacheProvider();
-            var file = UnitTestHelper.GenrateFileName();
-            const string thisAge = "18";
-            const string thisName = "Sally";
-            Func<DummyData2> execute = () =>
-                new DummyData2() { Age = thisAge, Name = thisName };
+        //[TestMethod]
+        //public void DisableCacheTest()
+        //{
+        //    var pfcp = new ProtobufMemoryCacheProvider();
+        //    var file = UnitTestHelper.GenrateFileName();
+        //    const string thisAge = "18";
+        //    const string thisName = "Sally";
+        //    Func<DummyData2> execute = () =>
+        //        new DummyData2() { Age = thisAge, Name = thisName };
 
 
-            pfcp.GetOrExecuteAndAdd(file, execute);
-            Assert.IsNull(pfcp.Get<DummyData2>(file));
-        }
+        //    Assert.IsNull(pfcp.Get<DummyData2>(file), "Pre-check");
+        //    pfcp.GetOrExecuteAndAdd(file, execute);
+        //    Assert.IsNull(pfcp.Get<DummyData2>(file), "Post-check");
+        //}
 
         [TestMethod]
 	    public void DisableIEnumerableTest()

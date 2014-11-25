@@ -54,5 +54,11 @@ namespace Colo
         /// <param name="type"></param>
         /// <returns></returns>
         T GetOrExecuteAndAdd<T>(string key, Func<T> execute, Type type = null) where T : class;
+
+        /// <summary>
+        /// Clears everything out of the cache provider
+        /// </summary>
+        /// <returns>True if cache was erased, False if cache was not cleared (or if caching clearing is not implemented)</returns>
+        bool Clear();
     }
 }

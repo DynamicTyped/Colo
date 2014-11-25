@@ -1,8 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Runtime.Caching;
+using System.Runtime.Serialization.Formatters;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using Colo.Configuration;
 using ProtoBuf;
 using StackExchange.Redis;
@@ -22,12 +25,45 @@ namespace Colo.Redis
             get { return null; }
         }
 
+        protected ConnectionMultiplexer Connection { get; set; }
+
+        protected int Database { get; set; }
+        protected bool UseServerFlush { get; set; }
+
         private readonly IDatabase _cache;
-        public RedisCacheProvider(ConnectionMultiplexer connection)
+        public RedisCacheProvider(ConnectionMultiplexer connection, int database = 0, bool useServerFlush = true)
         {
             if (connection == null) throw new ArgumentNullException("connection");
 
-            _cache = connection.GetDatabase();
+            Connection = connection;
+            Database = database;
+
+            _cache = Connection.GetDatabase(Database);
+        }
+
+        public override bool Clear()
+        {
+            var servers = Connection.GetEndPoints()
+                .Select(x => Connection.GetServer(x));
+
+            if (UseServerFlush)
+            {
+                Task.WaitAll(
+                    servers.Select(x => x.FlushDatabaseAsync(Database)).ToArray()
+                );
+            }
+            else
+            {
+                var db = Connection.GetDatabase(Database);
+
+                // Get the keys from all endpoints, and select the distinct keys.
+                var keys = servers.SelectMany(x => x.Keys()).Distinct().ToList();
+
+                // Delete thekeys
+                Parallel.ForEach(keys, x => db.KeyDeleteAsync(x).Wait());
+            }
+
+            return true;
         }
 
         /// <summary>

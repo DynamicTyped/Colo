@@ -33,8 +33,9 @@
     <BuildPackage>true</BuildPackage>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Colo">
-      <HintPath>..\packages\Colo.2.1423.11120.0\lib\net40\Colo.dll</HintPath>
+    <Reference Include="Colo, Version=2.1423.11125.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Colo.2.1423.11125.0\lib\net40\Colo.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net">
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>

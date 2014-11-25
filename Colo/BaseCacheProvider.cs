@@ -21,7 +21,7 @@ namespace Colo
 		/// <summary>
 		/// Removes all of the cache
 		/// </summary>
-		public static void Clear()
+		public virtual bool Clear()
 		{
 			var cacheItems = MemoryCache.Default.AsParallel().Select(c => c).ToList();
 
@@ -29,6 +29,8 @@ namespace Colo
 			{
 				MemoryCache.Default.Remove(item.Key);
 			}
+
+		    return true;
 		}
 
 		/// <summary>
