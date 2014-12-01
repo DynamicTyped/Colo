@@ -26,11 +26,13 @@ namespace Colo
             {
                 if (CachingSection.GetSection.UseCache && IsCacheable<T>(type))
                 {
-                    var ms = base.Get<MemoryStream>(key);
-                    if (ms == null) return null;
+                    var protoData = base.Get<byte[]>(key);
+                    if (protoData == null) return null;
 
-                    ms.Position = 0;
-                    return Serializer.Deserialize<T>(ms);
+                    using (var ms = new MemoryStream(protoData))
+                    {
+                        return Serializer.Deserialize<T>(ms);
+                    }
                 }
                 return null;
             }
@@ -54,12 +56,11 @@ namespace Colo
             {
                 if (CachingSection.GetSection.UseCache && IsCacheable<T>(type))
                 {
-                    // Instead of constantly creating/disposing MemoryStream objects,
-                    // just store the stream in memory cache.  When we need to read from
-                    // it, we'll just reset the position.
-                    var ms = new MemoryStream();
-                    Serializer.Serialize(ms, data);
-                    base.Set(key, ms);
+                    using (var ms = new MemoryStream())
+                    {
+                        Serializer.Serialize(ms, data);
+                        base.Set(key, ms.ToArray());
+                    }
                 }
             }
             catch (Exception ex)
